@@ -1,33 +1,62 @@
-import Head from 'next/head'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import ReactLoading from "react-loading";
 
-export default function Home() {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>ACN React Test Level 2</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+import Product from '../components/Product';
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to Accenture Coding Test.
-        </h1>
+const storeapi = 'https://fakestoreapi.com/products';
 
-        <p className="mt-3 text-2xl">
-         Kindly refer to README.md for your task.
-        </p>
-      </main>
+function Home() {
 
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://www.accenture.com/my-en"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/accenture.svg" alt="Accenture Logo" className="ml-2 h-4" />
-        </a>
-      </footer>
-    </div>
-  )
+    const [isLoading, setIsLoading] = useState(false);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+    
+      const fetchData = async () =>{
+        setIsLoading(true);
+        try {
+          const response = await axios.get(storeapi);
+          setProducts(response.data)
+          console.log(response.data)
+
+        } catch (error : any) {
+          console.error(error.message);
+        }
+        setIsLoading(false);
+      }
+  
+      fetchData();
+
+    }, []); 
+  
+
+    return (
+
+      <>
+      <div className="w-full flex">
+
+        { isLoading &&      
+            <div className="w-full flex justify-center">      
+              <ReactLoading color="orange" /> 
+            </div>    
+        }
+
+        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-6 xl:gap-x-8">
+
+
+          { products && 
+              products.map((item, i) => 
+                  <Product data={item} key={i}/>
+              )
+          }
+
+        </div>
+
+      </div>
+      </>
+
+    )
 }
+
+export default Home
