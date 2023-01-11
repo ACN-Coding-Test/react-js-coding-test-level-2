@@ -28,15 +28,14 @@ const categories = [
 
 export default function Categories() {
     return <div className="mt-7">
-
         <div className="mt-0.5 pb-2">
             <div className="flex items-center justify-between">
                 <Title>Categories</Title>
             </div>
             <div className="flex flex-wrap pb-3 mt-0.5">
-                {categories.map((c) => <div style={{ width: 148.5, height: 148.5 }} className="hover:shadow cursor-pointer bg-white border-b border-r border-r-light-gray border-b-light-gray p-8 text-center flex justify-center items-center">
+                {categories.map((c, index) => <div key={index} style={{ width: 148.5, height: 148.5 }} className={`${index < 8 ? 'border-b' : ''} ${(index + 1) % 8 ? 'border-r' : ''} hover:shadow-2xl cursor-pointer bg-white border-r-light-gray2 border-b-light-gray2 p-8 text-center flex justify-center items-center flex-col`}>
                     <Image src={c.image} height={80} width={80} alt={""} className="h-20 w-20" />
-                    <div className="text-sm">
+                    <div className="text-sm mt-2">
                         {c.name}
                     </div>
                 </div>

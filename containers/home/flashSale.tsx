@@ -27,7 +27,7 @@ export default function FlashSale({ products }: FlashSaleProps) {
             </div>
             <div className="mt-3 flex flex-wrap pb-3">
                 {products.map((product, index) => (index > 5 ? null :
-                    <div className="w-1/6 hover:shadow-xl cursor-pointer">
+                    <div key={product.id} className="w-1/6 hover:shadow-xl cursor-pointer">
                         <Image src={product.image} height={138} width={188} alt={""} className="h-44 w-36" />
                         <div className="px-1 py-1 text-sm text-black">
                             <TextWithEllipsis text={product.title} numberOfLines={2} />

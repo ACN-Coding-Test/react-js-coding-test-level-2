@@ -27,7 +27,7 @@ export default function LazMall({ products }: LazMallProps) {
             </div>
             <div className="flex flex-wrap pb-3">
                 {products.map((product, index) => (index < 6 || index > 11 ? null :
-                    <div className="flex-1 mr-3 shadow-lg hover:shadow cursor-pointer bg-white rounded-sm">
+                    <div key={product.id} className="flex-1 mr-3 shadow-lg hover:shadow cursor-pointer bg-white rounded-sm">
                         <Image src={product.image} height={138} width={188} alt={""} className="h-44 w-36" />
                         <div className="px-1 py-1 text-sm text-black text-center">
                             <div className="w-full -mt-10 flex justify-center">

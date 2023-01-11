@@ -22,7 +22,7 @@ interface HomePageProps {
   products: ProductInterface[];
 }
 
-const HomePage: NextPage<HomePageProps> = ({ products }) => {
+const HomePage = ({ products }: HomePageProps) => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <Head>
