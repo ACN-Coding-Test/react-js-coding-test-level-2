@@ -1,13 +1,17 @@
+import React from 'react'
 import '../styles/globals.css'
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
-// Tell Font Awesome to skip adding the CSS automatically 
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config } from '@fortawesome/fontawesome-svg-core'
+// Tell Font Awesome to skip adding the CSS automatically
 // since it's already imported above
-config.autoAddCss = false;
+config.autoAddCss = false
 
-import type { AppProps } from 'next/app'
+interface Props {
+  Component: any
+  pageProps: any
+}
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp: React.FunctionComponent<Props> = ({ Component, pageProps }) => {
   return <Component {...pageProps} />
 }
 
